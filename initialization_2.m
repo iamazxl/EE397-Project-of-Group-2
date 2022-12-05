@@ -2,10 +2,10 @@ K = 4;   %用户数目，1~16自定义，且为偶数
 P_max = 1;
 d_i = 1; % i=1,2,...,K
 sigma2 = 1; %信道高斯噪声方差
-H1 = makedist('Exponential',1); %|h1|^2，满足指数分布
-H2 = makedist('Exponential',2); %|h1|^2，满足指数分布
 lambda_1=1;
 lambda_2=1;
+H1 = random(makedist('Exponential',lambda_1)); %|h1|^2，满足指数分布
+H2 = random(makedist('Exponential',lambda_2)); %|h1|^2，满足指数分布
 num_file = 38; %文件数目
 epsilon = zeros(0,num_file);
 betai=ones(1,K);
@@ -58,12 +58,16 @@ for loop1=1:loop1max
  for loop2=1:loop2max
      alpha=rand(1,K);
   for k=1:K
-      if Sij(K*(k-1)+k)>0
+      if Sij(K*(k-1)+k)==0
           alpha(k)=0;
       end
   end
   alphasum=sum(alpha);
-  alpha=alpha/alphasum;
+  if alphasum==0
+      alpha=1/K*ones(1,K);
+  else
+      alpha=alpha/alphasum;
+  end
   psi=zeros(K,K);
   for i=1:K
       for j=1:K
@@ -77,10 +81,10 @@ for loop1=1:loop1max
       for j=1:K
           sumtemp=0;
           for k=1:K
-              sumtemp=sumtemp+lambda_2*Cij(i,k)*psi(j,k)*alpha(k);
+              sumtemp=sumtemp+H2*Cij(i,k)*psi(j,k)*alpha(k);
           end
-          sumtemp=sumtemp-lambda_2*Cij(i,j)*psi(j,j)*alpha(j);
-          if (lambda_1*alpha(j))/(sumtemp+betai(i))<((1-Cij(i,j))*epsilon(j))
+          sumtemp=sumtemp-H2*Cij(i,j)*psi(j,j)*alpha(j);
+          if (H1*alpha(j))/(sumtemp+betai(i))<((1-Cij(i,j))*epsilon(j))
               success(1,i)=0;
           end
       end

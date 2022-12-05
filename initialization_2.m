@@ -16,8 +16,11 @@ Amax=10;
 loop2max=10;   %生成功率分配向量循环数
 allalpha=zeros(loop1max,K);  %最终被选择的最佳的功率分配向量α
 avereward=zeros(K,1);
-allreward=zeros(K,1);        %最终各loop1的成功接收用户数reward
+allreward=zeros(K,1);       
+cur_reward=0;
+max_reward=-1;
 average_reward=0;
+best_alpha=zeros(1,K);
 for loop1=1:loop1max
     Cnum=randi(Cmax,[1,K]);    %生成用户缓存文件数
     CCij=zeros(K,num_file);     %CCij是用户缓存表
@@ -56,7 +59,6 @@ for loop1=1:loop1max
 
  %这里计算框架是根据论文中的伪代码2
  for loop2=1:Amax
-  for loop3=1:loop2max
       alpha=rand(1,K);
   for k=1:K
       if Sij(K*(k-1)+k)==0
@@ -66,7 +68,7 @@ for loop1=1:loop1max
   
   alphasum=sum(alpha);
   if alphasum==0
-      alpha=1/K*ones(1,K);
+      alpha=0.25*ones(1,K);
   else
       alpha=alpha/alphasum;
   end
@@ -78,6 +80,9 @@ for loop1=1:loop1max
           end
       end
   end
+  for loop3=1:loop2max
+      H1 = random(makedist('Exponential',lambda_1)); %|h1|^2，满足指数分布
+      H2 = random(makedist('Exponential',lambda_2)); %|h1|^2，满足指数分布
   success=ones(1,K);  %各用户是否成功接收
   for i=1:K
       for j=1:K
@@ -94,9 +99,16 @@ for loop1=1:loop1max
   reward=sum(success);
   avereward(loop3)=reward;
   end
-  allreward(loop2)=mean(avereward);
+  cur_reward=mean(avereward);
+  if cur_reward>max_reward
+      max_reward=cur_reward;
+      best_alpha=alpha;
+  end
  end
-  allalpha(loop1,:)=alpha;
+  allalpha(loop1,:)=best_alpha;
+  allreward(loop1)=max_reward;
+  best_alpha=zeros(1,K);
+  max_reward=0;
 end
 
 

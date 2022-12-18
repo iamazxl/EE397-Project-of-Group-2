@@ -1,4 +1,4 @@
-K = 4;   %用户数目，1~16自定义，且为偶数
+K = 3;   %用户数目，1~16自定义，且为偶数
 P_max = 1;
 d_i = 1; % i=1,2,...,K
 sigma2 = 1; %信道高斯噪声方差
@@ -21,6 +21,7 @@ cur_reward=0;
 max_reward=-1;
 average_reward=0;
 best_alpha=zeros(1,K);
+allSij=zeros(loop1max,K*K);
 for loop1=1:loop1max
     Cnum=randi(Cmax,[1,K]);    %生成用户缓存文件数
     CCij=zeros(K,num_file);     %CCij是用户缓存表
@@ -35,7 +36,7 @@ for loop1=1:loop1max
  end
 
  ftemp=randperm(38);
- fask=ftemp(1:4);    %生成用户请求文件，这里是假设用户请求文件不同
+ fask=ftemp(1:K);    %生成用户请求文件，这里是假设用户请求文件不同
  Cij=zeros(K,K);     %论文中的用户i是否缓存文件j
  for i=1:K
      for j=1:K
@@ -55,8 +56,7 @@ for loop1=1:loop1max
  end
  Sij=Sij.';
  Sij=reshape(Sij,1,K*K);   %方便后续计算reward
-
-
+ allSij(loop1,:)=Sij;
  %这里计算框架是根据论文中的伪代码2
  for loop2=1:Amax
       alpha=rand(1,K);

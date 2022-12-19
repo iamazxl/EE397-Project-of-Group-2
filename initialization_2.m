@@ -10,7 +10,7 @@ betai=ones(1,K);
 for i = 1:num_file
     epsilon(i) = 0.016*i;
 end
-Cmax=19;%最多缓存数
+%Cmax=19;%最多缓存数
 loop1max=10;   %生成用户请求和缓存循环数
 Amax=10;
 loop2max=10;   %生成功率分配向量循环数
@@ -23,7 +23,7 @@ average_reward=0;
 best_alpha=zeros(1,K);
 allSij=zeros(loop1max,K*K);
 for loop1=1:loop1max
-    Cnum=randi(Cmax,[1,K]);    %生成用户缓存文件数
+    Cnum=10*ones(1,K);    %生成用户缓存文件数
     CCij=zeros(K,num_file);     %CCij是用户缓存表
 
     %随机生成用户缓存

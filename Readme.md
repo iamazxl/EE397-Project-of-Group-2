@@ -27,11 +27,21 @@ noma_nocaching.m、OMA_nocaching.m、OMA_caching.m、MMF.m、equal.m
 
 ### 运行结果
 
-运行main1函数
+## 运行main1函数
 
-<img src="https://notes.sjtu.edu.cn/uploads/upload_be35f84fe1695cbd846f24952feeb77e.png" alt="figure5" style="zoom:67%;" />
+<img src="https://notes.sjtu.edu.cn/uploads/upload_be35f84fe1695cbd846f24952feeb77e.png" alt="figure5" style="zoom:50%;" />
 
 <center>论文结果<center>
 
-<img src="https://notes.sjtu.edu.cn/uploads/upload_478a01edae40c07ac7e18d320ea3d719.jpg" alt="运行结果1" style="zoom:67%;" />
+<img src="https://notes.sjtu.edu.cn/uploads/upload_478a01edae40c07ac7e18d320ea3d719.jpg" alt="运行结果1" style="zoom:50%;" />
 <center>运行结果<center>
+  
+## 运行net_1.m函数
+  
+运行net_1.m程序进行网络训练，将训练好的网络数据保存在method2_cache_10.mat和method2_cache_30.mat中。
+  
+运行eval_reward.m程序进行方法一、方法二性能对比，运行结果如下。
+
+<img src="https://user-images.githubusercontent.com/88258281/210690630-4f29abe7-036e-493d-8f9b-6ab1e182210d.png" style="zoom:30%;" />
+  
+<img src="https://user-images.githubusercontent.com/88258281/210690698-6afd74b9-39b2-4f5a-895d-e358c68b6fac.png" style="zoom:30%;" />

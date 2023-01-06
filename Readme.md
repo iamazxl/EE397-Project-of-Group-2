@@ -1,6 +1,6 @@
-## 方法一 Readme
+## Readme
 
-### 函数实现
+### 方法一函数实现
 
 * 主函数
 
@@ -25,9 +25,7 @@
 
 noma_nocaching.m、OMA_nocaching.m、OMA_caching.m、MMF.m、equal.m
 
-### 运行结果
-
-## 运行main1函数
+### 方法一运行结果
 
 <img src="https://notes.sjtu.edu.cn/uploads/upload_be35f84fe1695cbd846f24952feeb77e.png" alt="figure5" style="zoom:50%;" />
 
@@ -36,7 +34,8 @@ noma_nocaching.m、OMA_nocaching.m、OMA_caching.m、MMF.m、equal.m
 <img src="https://notes.sjtu.edu.cn/uploads/upload_478a01edae40c07ac7e18d320ea3d719.jpg" alt="运行结果1" style="zoom:50%;" />
 <center>运行结果<center>
   
-## 运行net_1.m函数
+## 方法二运行结果
+### 运行net_1.m函数
   
 运行net_1.m程序进行网络训练，将训练好的网络数据保存在method2_cache_10.mat和method2_cache_30.mat中。
   

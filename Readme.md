@@ -39,7 +39,7 @@ noma_nocaching.m、OMA_nocaching.m、OMA_caching.m、MMF.m、equal.m
   
 运行net_1.m程序进行网络训练，将训练好的网络数据保存在method2_cache_10.mat和method2_cache_30.mat中。
   
-运行eval_reward.m程序进行方法一、方法二性能对比，运行结果如下。
+运行main_1226.m程序进行方法一、方法二性能对比，运行结果如下。
 
 <img src="https://user-images.githubusercontent.com/88258281/210690630-4f29abe7-036e-493d-8f9b-6ab1e182210d.png" style="zoom:30%;" />
   
